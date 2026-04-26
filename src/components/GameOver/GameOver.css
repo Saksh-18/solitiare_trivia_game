@@ -1,0 +1,106 @@
+.game-over {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3.5rem 3rem;
+  background: var(--color-felt-dark);
+  border-radius: 1.5rem;
+  text-align: center;
+  box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.7);
+  width: 100%;
+  max-width: 400px;
+  border: 2px solid rgba(255,255,255,0.1);
+  margin-top: 2rem;
+}
+
+.game-over.victory h2 {
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #4ade80, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+}
+
+.game-over.loss h2 {
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #f87171, #ef4444);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.final-score {
+  font-size: 1.25rem;
+  color: #e2e8f0;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.reward-box {
+  margin-top: 1rem;
+  padding: 0.5rem 1.25rem;
+  background: rgba(251, 191, 36, 0.2);
+  border: 2px solid #fbbf24;
+  border-radius: 0.75rem;
+  color: #fbbf24;
+  font-weight: 800;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.total-coins {
+  font-size: 1.125rem;
+  color: #cbd5e1;
+  margin-bottom: 2rem;
+  background: rgba(0,0,0,0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+}
+
+.total-coins span {
+  color: #fbbf24;
+  font-weight: bold;
+  font-size: 1.25rem;
+  margin-left: 0.5rem;
+}
+
+.restart-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background: var(--color-error);
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+}
+
+.restart-btn:hover {
+  filter: brightness(1.2);
+  transform: translateY(-2px);
+}
+
+.restart-btn:active {
+  transform: translateY(0);
+}
+
+.victory-btn {
+  background: var(--color-success);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.8); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

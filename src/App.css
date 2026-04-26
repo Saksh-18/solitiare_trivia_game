@@ -1,0 +1,192 @@
+.game-container {
+  max-width: 800px;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.solitaire-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  padding: 0 1rem;
+}
+
+.header-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.level-badge {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: white;
+  margin-top: 0.25rem;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.header-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  min-width: 80px;
+  color: white;
+  box-shadow: inset 0 2px 4px rgba(0,0,0,0.5);
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.score-stat {
+  flex-direction: row;
+  gap: 0.5rem;
+  background: #fbbf24;
+  color: #78350f;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+  border-top: 2px solid #fde68a;
+  text-shadow: none;
+}
+
+.stat-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  opacity: 0.8;
+}
+
+.stat-value {
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+.danger-text {
+  color: #fca5a5;
+  animation: pulse 1s infinite alternate;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); }
+  to { transform: scale(1.1); color: #ef4444; }
+}
+
+.game-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  font-family: 'Inter', sans-serif;
+  letter-spacing: 1px;
+}
+
+.game-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.play-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centered-overlay {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.columns-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+  width: 100%;
+  max-width: 700px;
+  margin-bottom: 2rem;
+}
+
+.draw-pile-area {
+  margin-top: auto;
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.deck-info {
+  color: white;
+  font-weight: bold;
+  opacity: 0.7;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  font-size: 0.875rem;
+  background: rgba(0,0,0,0.3);
+  padding: 0.25rem 1rem;
+  border-radius: 1rem;
+}
+
+.draw-pile-slot-wrapper {
+  position: relative;
+  width: 130px;
+  height: 182px; /* roughly 5/7 aspect */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.draw-pile-slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deck-shadow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #f1f5f9;
+  border-radius: 0.5rem;
+  box-shadow: 2px 2px 0 #cbd5e1, 4px 4px 0 #94a3b8;
+  z-index: 0;
+  border: 1px solid #cbd5e1;
+}
+
+@media (max-width: 600px) {
+  .columns-grid {
+    gap: 0.5rem;
+  }
+  .game-container {
+    padding: 0.5rem;
+  }
+  .solitaire-header {
+    margin-bottom: 1rem;
+  }
+  .game-title {
+    font-size: 1.125rem;
+  }
+  .header-stat {
+    min-width: 60px;
+    padding: 0.25rem 0.5rem;
+  }
+  .stat-value {
+    font-size: 1rem;
+  }
+}
