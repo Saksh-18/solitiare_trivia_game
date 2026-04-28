@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { cardData, categories } from './data/cards';
+import { levelsData } from './data/levels';
 import { shuffleArray, validateDrop } from './utils/gameLogic';
 import Card from './components/Card/Card';
 import CategoryColumn from './components/CategoryColumn/CategoryColumn';
@@ -20,6 +20,7 @@ function App() {
   const [placedCards, setPlacedCards] = useState({});
   const [activeCategory, setActiveCategory] = useState(null);
   const [dropFeedback, setDropFeedback] = useState(null); 
+  const [currentCategories, setCurrentCategories] = useState([]);
   
   const dropzoneRefs = useRef({});
 
@@ -28,28 +29,34 @@ function App() {
   }, []);
 
   const startGame = (isNextLevel = false) => {
+    let newLevel = isNextLevel ? level + 1 : 1;
+    if (newLevel > levelsData.length) {
+      newLevel = 1;
+    }
+    const levelIndex = (newLevel - 1) % levelsData.length;
+    const currentLevelData = levelsData[levelIndex];
+
     // Generate a shuffled deck
-    const newDeck = shuffleArray(cardData);
+    const newDeck = shuffleArray(currentLevelData.cards);
     setDeck(newDeck);
     setCurrentIndex(0);
+    setCurrentCategories(currentLevelData.categories);
     
     // Set dynamic move limit based on level/deck
-    const moveLimit = Math.floor(newDeck.length * 1.85); // roughly ~29 for 16 cards
+    const moveLimit = Math.floor(newDeck.length * 1.85); // roughly ~22 for 12 cards
     setMoves(moveLimit);
     
-    if (isNextLevel) {
-      setLevel(l => l + 1);
-    } else {
-      setLevel(1);
+    setLevel(newLevel);
+    if (!isNextLevel) {
       setCoins(0);
     }
 
-    setPlacedCards({
-      Animals: [],
-      Programming: [],
-      Cities: [],
-      Food: []
+    const initialPlaced = {};
+    currentLevelData.categories.forEach(cat => {
+      initialPlaced[cat.id] = [];
     });
+    setPlacedCards(initialPlaced);
+
     setGameStatus('playing');
     setDropFeedback(null);
   };
@@ -163,7 +170,7 @@ function App() {
         ) : (
           <div className="play-area">
             <div className="columns-grid">
-              {categories.map(cat => (
+              {currentCategories.map(cat => (
                 <CategoryColumn
                   key={cat.id}
                   ref={el => dropzoneRefs.current[cat.id] = el}

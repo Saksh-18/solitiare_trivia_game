@@ -24,7 +24,11 @@ export default function Card({ card, onDrag, onDragEnd, isStacked, index }) {
       style={{ zIndex: isStacked ? index : 50 }}
     >
       <div className="card-content">
-        <div className="card-text">{card.text}</div>
+        {card.type === 'emoji' ? (
+          <div className="card-emoji">{card.content}</div>
+        ) : (
+          <div className="card-text">{card.content}</div>
+        )}
       </div>
     </motion.div>
   );
